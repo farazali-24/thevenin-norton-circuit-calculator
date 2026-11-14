@@ -7,7 +7,7 @@ This project implements an electrical circuit calculator in C for determining Th
 
 The program applies fundamental circuit analysis principles, including Ohm's law, voltage division, parallel resistance and source equivalence.
 
-It provides a console-based interface for entering circuit parameters, performing calculations and displaying the equivalent voltage, current and resistance values.
+It provides a console-based interface for entering electrical parameters, performing calculations and displaying the equivalent voltage, current and resistance.
 
 ## Features
 
@@ -17,10 +17,10 @@ It provides a console-based interface for entering circuit parameters, performin
 - Norton equivalent resistance calculation
 - Support for two predefined circuit configurations
 - Voltage divider and parallel resistance calculations
-- Input validation for positive numerical values
-- Interactive menu for selecting circuit configurations
-- Repeated calculations without restarting the program
-- Console output displaying calculated electrical quantities
+- Input validation for numerical values
+- Interactive circuit selection menu
+- Repeated calculations without restarting
+- Supporting circuit documentation and test data
 
 ## Project Structure
 
@@ -28,18 +28,25 @@ It provides a console-based interface for entering circuit parameters, performin
 thevenin-norton-circuit-calculator/
 ├── src/
 │   └── circuit_calculator.c
+├── docs/
+│   ├── README.md
+│   ├── thevenin-norton-circuit-overview.pdf
+│   ├── circuit-calculator-flowchart.pdf
+│   └── circuit-calculator-test-data.xlsx
 ├── README.md
 ├── .gitignore
 └── LICENSE
 ```
 
-The `src/` directory contains the C implementation of the circuit calculator.
+The `src/` directory contains the C implementation.
+
+The `docs/` directory contains the circuit overview, program flowchart and testing evidence.
 
 ## How It Works
 
 ### 1. Circuit Selection
 
-The program provides two circuit configurations:
+The program supports two predefined circuit configurations.
 
 **Circuit 1 — Voltage-Source Circuit**
 
@@ -49,11 +56,11 @@ A voltage source connected to two resistors forming a voltage divider, with the 
 
 A current source feeding two parallel resistors.
 
-The user selects a configuration and enters the required electrical values.
+The user selects the required configuration and enters the electrical parameters.
 
 ### 2. Thévenin Equivalent Voltage
 
-For the voltage-source circuit, the Thévenin voltage is determined using the voltage divider equation:
+For the voltage-source configuration, the Thévenin voltage is calculated using:
 
 ```text
 Vt = V × R1 / (R1 + R2)
@@ -76,17 +83,15 @@ Where I is the supply current.
 
 ### 3. Thévenin Equivalent Resistance
 
-For both supported configurations, the equivalent resistance is calculated using the parallel resistance formula:
+For the supported circuit configurations, the equivalent resistance is calculated using:
 
 ```text
 Rt = (R1 × R2) / (R1 + R2)
 ```
 
-The resistance calculation is based on the circuit configurations implemented in the program.
-
 ### 4. Norton Equivalent Current
 
-The Norton equivalent current is calculated using:
+The Norton current is calculated using:
 
 ```text
 In = Vt / Rt
@@ -102,11 +107,9 @@ The Thévenin and Norton equivalent resistances are equal:
 Rn = Rt
 ```
 
-This relationship allows the program to determine equivalent voltage-source and current-source representations.
-
 ## Example Calculation
 
-Consider the voltage-source configuration with the following inputs:
+Consider the voltage-source configuration with:
 
 ```text
 Supply voltage = 12 V
@@ -114,40 +117,31 @@ R1 = 1000 Ω
 R2 = 2000 Ω
 ```
 
-The calculated Thévenin voltage is:
+### Thévenin Voltage
 
 ```text
 Vt = 12 × 1000 / (1000 + 2000)
 Vt = 4 V
 ```
 
-Equivalent resistance:
+### Equivalent Resistance
 
 ```text
 Rt = (1000 × 2000) / (1000 + 2000)
 Rt = 666.667 Ω
 ```
 
-Norton current:
+### Norton Current
 
 ```text
 In = 4 / 666.667
 In = 0.006 A
 ```
 
-Norton resistance:
+### Norton Resistance
 
 ```text
 Rn = 666.667 Ω
-```
-
-### Expected Program Output
-
-```text
-Vt: 4.000 V
-Rt: 666.667 ohms
-In: 0.006 A
-Rn: 666.667 ohms
 ```
 
 ## Building and Running
@@ -176,42 +170,54 @@ On Windows:
 .\circuit_calculator.exe
 ```
 
-### Program Menu
+The program displays an interactive menu for selecting a circuit configuration and entering the required electrical values.
 
-The program displays:
+## Testing
 
-```text
-Thevenin / Norton Equivalent Calculator
+The calculator was developed with supporting calculation test data to evaluate its results.
 
-1. Voltage-source circuit
-2. Current-source circuit
-0. Exit
-```
+Testing includes:
 
-Select a circuit configuration and enter the requested supply and resistance values.
+1. Thévenin voltage calculations
+2. Equivalent resistance calculations
+3. Norton current calculations
+4. Norton resistance calculations
+5. Input validation
+6. Different circuit parameter values
 
-The program displays the calculated equivalent values and returns to the menu.
+The original testing spreadsheet is available in the project documentation.
 
-## Input Validation
+## Documentation
 
-The calculator checks that:
+Supporting project files are available in the [documentation folder](docs/README.md).
 
-- The selected menu option is valid
-- Numerical inputs are positive
-- Invalid or non-numeric inputs are rejected
-- Additional characters are not accepted as part of a valid numerical input
+### Circuit Overview
 
-Invalid numerical values prompt the user to enter a valid positive number.
+[View Thévenin and Norton Circuit Overview](docs/thevenin-norton-circuit-overview.pdf)
+
+Original circuit analysis documentation supporting the implemented configurations.
+
+### Program Flowchart
+
+[View Program Flowchart](docs/circuit-calculator-flowchart.pdf)
+
+Flowchart illustrating the program's calculation process and logical structure.
+
+### Calculation Test Data
+
+[View Calculation Test Data](docs/circuit-calculator-test-data.xlsx)
+
+Spreadsheet containing calculation testing evidence.
 
 ## Limitations
 
 - Only two predefined circuit configurations are supported.
-- The calculator does not analyse arbitrary circuit networks.
+- The program does not analyse arbitrary electrical networks.
 - Components are assumed to be ideal.
-- Calculations are limited to DC resistive circuit analysis.
-- Input values must be positive.
-- Results use single-precision floating-point arithmetic.
-- The program does not provide a graphical circuit editor or simulation environment.
+- Calculations are limited to DC resistive circuits.
+- Numerical inputs must be positive.
+- Calculations use single-precision floating-point arithmetic.
+- The program operates through a console interface without circuit simulation or graphical editing.
 
 ## Skills Demonstrated
 
@@ -220,8 +226,8 @@ Invalid numerical values prompt the user to enter a valid positive number.
 - Thévenin and Norton equivalent circuits
 - Ohm's law and voltage division
 - Parallel resistance calculations
-- Functions and modular programming
-- Pointers and parameter passing
-- Input validation and error handling
 - Mathematical problem-solving
-- Software development for engineering applications
+- Functions and modular programming
+- Input validation and error handling
+- Software testing and verification
+- Technical documentation
